@@ -99,3 +99,35 @@ console.log(cart);
 });
   
 
+/* Output
+$ npm test
+
+> shopping-cart@1.0.0 test
+> jest
+
+  console.log
+    [ { item: 'IMac', quantity: 2 }, { item: 'Apple Watch', quantity: 3 } ]
+
+      at Object.log (tests/cart.test.js:62:9)
+
+ PASS  tests/cart.test.js
+  Shopping Cart Testing using HOF
+    addItem                                                                                                              
+      √ should add a new item with valid quantity (2 ms)
+      √ should throw error for negative quantity (7 ms)
+      √ should throw error for zero quantity (1 ms)
+    removeItem
+      √ should remove an existing item
+      √ should throw error if item does not exist (1 ms)
+      √ should remove the last item but keep others intact (18 ms)
+    getTotalItems
+      √ should return total quantity of all items (1 ms)
+      √ should return 0 for an empty cart
+      √ should handle large quantities  (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       9 passed, 9 total
+Snapshots:   0 total
+Time:        0.356 s, estimated 1 s
+Ran all test suites.
+*/
