@@ -2,7 +2,7 @@ const {addItem, removeItem, getTotalItems} = require('../cart.js');
 
 
 
-describe("Testing shopping Cart using HOF", ()=>{
+describe("Shopping Cart Testing using HOF", ()=>{
 
     let cart ;
 
@@ -15,22 +15,22 @@ describe("Testing shopping Cart using HOF", ()=>{
 
     //Positive case
     test("should add a new item with valid quantity", () => {
-      cart = addItem(cart, "apple", 3);
+      cart = addItem(cart, "Apple Watch", 3);
 
-      expect(cart).toEqual([{ item: "apple", quantity: 3 }]);
+      expect(cart).toEqual([{ item: "Apple Watch", quantity: 3 }]);
     });
 
    
    //Negative case
 
     test("should throw error for negative quantity", () => {
-      expect(() => addItem(cart, "banana", -2)).toThrow("Quantity must be a positive number");
+      expect(() => addItem(cart, "IMac", -2)).toThrow("Quantity must be a positive number");
     });
 
     //Edge case
 
     test("should throw error for zero quantity", () => {
-      expect(() => addItem(cart, "banana", 0)).toThrow("Quantity must be a positive number");
+      expect(() => addItem(cart, "Airpod", 0)).toThrow("Quantity must be a positive number");
     });
 
    
@@ -42,27 +42,27 @@ describe("Testing shopping Cart using HOF", ()=>{
 
     //Positive case
     test("should remove an existing item", () => {
-      cart = addItem(cart, "apple", 3);
-      cart = removeItem(cart, "apple");
+      cart = addItem(cart, "IPad", 3);
+      cart = removeItem(cart, "IPad");
       expect(cart).toEqual([]);
     });
 
     //Negative case
     test("should throw error if item does not exist", () => {
-      expect(() => removeItem(cart, "orange")).toThrow("Item not found in cart");
+      expect(() => removeItem(cart, "IMouse")).toThrow("Item not found in cart");
     });
 
     // Edge Case
   test("should remove the last item but keep others intact", () => {
-  cart = addItem(cart, "apple", 2);
-  cart = addItem(cart, "banana", 3);
-  cart = addItem(cart, "cherry", 5);
+  cart = addItem(cart, "IMac", 2);
+  cart = addItem(cart, "Apple Watch", 3);
+  cart = addItem(cart, "MacBook", 5);
 
 cart.pop();
 console.log(cart);
   expect(cart).toEqual([
-    { item: "apple", quantity: 2 },
-    { item: "banana", quantity: 3 }
+    { item: "IMac", quantity: 2 },
+    { item: "Apple Watch", quantity: 3 }
   ]);
   expect(getTotalItems(cart)).toBe(5);
 });
@@ -74,8 +74,8 @@ console.log(cart);
 
     //Positive case
     test("should return total quantity of all items", () => {
-      cart = addItem(cart, "apple", 2);
-      cart = addItem(cart, "banana", 5);
+      cart = addItem(cart, "IPhone", 2);
+      cart = addItem(cart, "AirPOd", 5);
       expect(getTotalItems(cart)).toBe(7);
     });
 
@@ -89,9 +89,9 @@ console.log(cart);
     test("should handle large quantities ", () => {
     const largeQuantity = 1_000_000_000; // 1 billion
 
-    cart = addItem(cart, "apples", largeQuantity);
-    cart = addItem(cart, "bananas", largeQuantity);
-    cart = addItem(cart, "cherries", largeQuantity);
+    cart = addItem(cart, "IPhone", largeQuantity);
+    cart = addItem(cart, "IMac", largeQuantity);
+    cart = addItem(cart, "Airpod", largeQuantity);
 
     expect(getTotalItems(cart)).toBe(3_000_000_000);
   });
